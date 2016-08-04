@@ -34,24 +34,38 @@ Meteor.methods({
     );
   },
 
-  createOrder(){
+  createOrder(cartContent){
     var cart = {
-    "items": [
-      {
-        "title": "Test",
-        "quantity": 1,
-        "currency_id": "ARS",
-        "unit_price": 10
-      }
-    ]
-  };
+      "items": cartContent
+    }
 
-  var merca = MercadoPago.createPreference(cart);
-  console.log(merca);
-   Preferences.insert({
-      url: merca.response.init_point
-      });
-  },
+    var merca = MercadoPago.createPreference(cart);
+    
+     Orders.insert({
+        userId: this.userId,
+        url: merca.response.init_point,
+        items: cart.items,
+        status: 'alive'
+        });
+    },
+
+  /*
+    {
+      "items": [
+        {
+          "currency_id": "ARS",
+          "quantity": 2,
+          "title": 'item 1',
+          "unit_price": 32, 
+        },
+        {
+          "currency_id": "ARS",
+          "quantity": 1,
+          "title": 'item 2',
+          "unit_price": 15, 
+        }
+      ]
+    };*/
 
   getPreference(){
    var refe = MercadoPago.getPreference('#2076438190');

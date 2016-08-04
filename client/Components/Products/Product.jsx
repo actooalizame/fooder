@@ -11,22 +11,13 @@ Product = React.createClass({
 		}
 		else if(cartLength>0){
 			let cart = this.props.userCart[0],
-				cartId = cart._id;
-			//Meteor.call('insertCartItem',)
-			/*cart.items.map(function (item) {
-			  if (item.title == productData.title) {
-			    console.log('repetido');
-			    return;
-			  } else if (item.title !== productData.title) {
-			    console.log('nuevo');
-			    Meteor.call('insertCartItem',cartId,productData);
-			  }
-			});*/
-			var carto = cart.items.filter(function (item) { return item.title == productData.title });
-			if(carto.length==0){
+				cartId = cart._id,
+				repeatedItems = cart.items.filter(function (item) { return item.title == productData.title });
+				
+			if(repeatedItems.length==0){
 				Meteor.call('insertCartItem',cartId,productData);
 			}
-			else if(carto.length>0){
+			else if(repeatedItems.length>0){
 				Meteor.call('updateCartItem',cartId,productData);
 			}
 		}
