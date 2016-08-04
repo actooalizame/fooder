@@ -9,20 +9,16 @@ Cart = React.createClass({
 
 		return {
 			userCart: Carts.find({}).fetch(),
-			userOrders: Orders.find({status:'alive'}).fetch()
+			userOrders: Orders.find({status:'alive'}).fetch(),
+			
 		}
 	},
 
-	remove(){
-		console.log('ok');
-	},
-
 	getItems(){
-		
-		let items = this.data.userCart[0].items;
-		
+		let cart = this.data.userCart[0],
+				cartId = cart._id,
+				items = cart.items;
 			return items.map((item) =>{
-				let cartId = this.data.userCart[0]._id;
       	return <ItemList key={item.id} item={item} cartId={cartId}  />
     });
 	
@@ -67,22 +63,33 @@ Cart = React.createClass({
 				cartId = this.data.userCart[0]._id;
 		Meteor.call('removeCart',cartId);
 		window.open(url, 'newwindow', 'width=767, height=390'); return false;
-		
+	},
+
+	clearCart(){
+		let cartId = this.data.userCart[0]._id;
+		Meteor.call('removeCart',cartId);
 	},
 	
 	render(){
 		return(
 			<div>
-				<h1>{this.data.userCart.length}</h1>
+				
 				{this.data.userCart.length > 0 ?
 					<div>
+						<p>Tienes <strong>{this.data.userCart[0].items.length}</strong> elemento en tu carrito</p>
 						{this.getItems()}
-						<h4>{this.getTotal()}</h4>
-						<button className="ui secondary button" onClick={this.createOrder}>Okay</button>
+						<hr/>
+						<h3>Total: ${this.getTotal()}</h3>
+						<div className="ui buttons">
+						  <button className="ui positive button" onClick={this.createOrder}>Crear Pedido</button>
+						  <div className="or" data-text="o"></div>
+						  <button className="ui button" onClick={this.clearCart}>Vaciar Carrito</button>
+						</div>
+						
 						{this.payOrder()}
 					</div>
 				:
-					<span></span>
+					<h3>Tu carrito de compras esta vacio</h3>
 				}
 				
 			</div>

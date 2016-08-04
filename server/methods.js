@@ -80,6 +80,9 @@ Meteor.methods({
       { _id: cartId },
       {$pull: {items: item}}
     );
+    var cart = Carts.findOne({_id:cartId}),
+        itemsLength = cart.items.length;
+    if(itemsLength==0){Carts.remove(cartId);}
   },
 
 

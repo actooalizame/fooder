@@ -3,7 +3,6 @@ NavMenu = React.createClass({
 		return(
 
 			<div className="ui menu">
-				<Cart />
 				<div className="right menu">
 					<div className="item">
 				    <div className="ui button"><LoginBtn /></div>

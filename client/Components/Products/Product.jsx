@@ -32,31 +32,31 @@ Product = React.createClass({
 
 	render(){
 		return(
-			<div className="ui card">
-			  <div className="image">
-			    
-			  </div>
-			  <div className="content">
-			    <a className="header">{this.props.product.name}</a>
-			    <div className="meta">
-			      <span className="date">{this.props.product.price}</span>
+			<div className="ui items">
+			  <div className="item">
+			    <div className="ui small image">
+			      <img src="http://placehold.it/400x350" />
 			    </div>
-			    <div className="description">
-			      {this.props.product.description}
+			    <div className="content">
+			      <div className="header">{this.props.product.name}</div>
+			      <div className="meta">
+			        <span className="price">${this.props.product.price}</span>
+			        
+			      </div>
+			      <div className="description">
+			        <p>{this.props.product.description}</p>
+			        <a>
+					     <div className="ui vertical animated button" tabIndex="0" onClick={this.addProduct}>
+							  <div className="hidden content">Shop</div>
+								  <div className="visible content">
+								    <i className="shop icon"></i>
+								  </div>
+								</div>
+					    </a>
+			      </div>
 			    </div>
 			  </div>
-			  <div className="extra content">
-			    <a>
-			   
-			     <div className="ui vertical animated button" tabIndex="0" onClick={this.addProduct}>
-					  <div className="hidden content">Shop</div>
-					  <div className="visible content">
-					    <i className="shop icon"></i>
-					  </div>
-					</div>
-			    </a>
-			  </div>
-			</div>
+		  </div>
 			)
 	}
 });

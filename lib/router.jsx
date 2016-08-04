@@ -6,7 +6,7 @@ import { mount } from 'react-mounter'
 FlowRouter.route('/', {
 	name: 'home',
 	action(){
-		mount(FrontLayout, {content: <ProductsList  />});
+		mount(MainLayout, {content: <FrontPage  />});
 	}
 });
 

@@ -1,5 +1,3 @@
-//var MP = Npm.require('mercadopago');
-
 ProductsList = React.createClass({
 	mixins: [ReactMeteorData],
 

@@ -7,8 +7,9 @@ ItemList = React.createClass({
 	},
 
 	render(){
+
 		return(
-			<p>{this.props.item.title} - {this.props.item.unit_price} <i className="delete icon" onClick={this.removeItem}></i></p>
+			<h4>{this.props.item.title} - ${this.props.item.unit_price} <i className="delete icon" onClick={this.removeItem}></i></h4>
 			)
 	}
 });
