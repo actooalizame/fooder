@@ -29,9 +29,10 @@ ProductsList = React.createClass({
 
 	openModal(){
 		let url = this.data.userOrders.map(function(a) {return a.url;}),
-				cartId = this.data.userCart._id;
-		window.open(url, 'newwindow', 'width=767, height=390'); return false;
+				cartId = this.data.userCart[0]._id;
 		Meteor.call('removeCart',cartId);
+		window.open(url, 'newwindow', 'width=767, height=390'); return false;
+		
 	},
 
 	payOrder(){

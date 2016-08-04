@@ -1,3 +1,5 @@
+
+
 Meteor.methods({
   
   createCart(productData){
@@ -6,6 +8,7 @@ Meteor.methods({
       createdAt: new Date(),
       items: [
         {
+        "id": productData.id,
         "title": productData.title,
         "unit_price": productData.unit_price,
         "quantity": 1,
@@ -19,6 +22,7 @@ Meteor.methods({
       { _id: cartId },
       {$push: 
         {items: {
+          "id": productData.id,
           "title": productData.title,
           "unit_price": productData.unit_price,
           "quantity": 1,
@@ -68,6 +72,15 @@ Meteor.methods({
 
   removeCart(cartId){
     Carts.remove(cartId);
-  }
+
+  },
+  
+  'removeItem': function(cartId,item){
+    Carts.update(
+      { _id: cartId },
+      {$pull: {items: item}}
+    );
+  },
+
 
 });

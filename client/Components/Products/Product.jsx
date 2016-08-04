@@ -1,10 +1,14 @@
+
+
 Product = React.createClass({
 
 	addProduct(){
 		let cartLength = this.props.userCart.length,
+				itemId = Math.floor(Math.random()*100000000);
 				productData = {
 					"title": this.props.product.name,
-	        "unit_price": Number(this.props.product.price)
+	        "unit_price": Number(this.props.product.price),
+	        "id": itemId
 				}
 		if(cartLength==0){
 			Meteor.call('createCart', productData);
