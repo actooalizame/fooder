@@ -11,6 +11,9 @@ Product = React.createClass({
 		}
 		else if(cartLength>0){
 			let cart = this.props.userCart[0],
+				cartId = cart._id;
+			Meteor.call('insertCartItem',cartId,productData);
+			/*let cart = this.props.userCart[0],
 				cartId = cart._id,
 				repeatedItems = cart.items.filter(function (item) { return item.title == productData.title });
 				
@@ -19,7 +22,7 @@ Product = React.createClass({
 			}
 			else if(repeatedItems.length>0){
 				Meteor.call('updateCartItem',cartId,productData);
-			}
+			}*/
 		}
 	},
 

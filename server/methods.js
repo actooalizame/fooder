@@ -34,44 +34,40 @@ Meteor.methods({
     );
   },
 
-  createOrder(cartContent){
+  createOrder(cartContent,cartId){
+    let price = cartContent.map(function(a) {return a.unit_price;}),
+        priceTotal =  eval(price.join('+'));
+    let names = cartContent.map(function(a) {return a.title;});
+        namesTotal = names.join(', ');
+        //namesTotal = names.split('- ').join("\n")
+    let quantity = cartContent.map(function(a) {return a.quantity;}),
+        quantityTotal = eval(quantity.join('+'));
+    
+    
     var cart = {
-      "items": cartContent
+      //"items": cartContent
+      
+       "items": [
+        {
+          "currency_id": "ARS",
+          "quantity": quantityTotal/quantityTotal,
+          "title": namesTotal,
+          "unit_price": priceTotal, 
+        }
+      ]
     }
 
     var merca = MercadoPago.createPreference(cart);
+    Orders.insert({
+      userId: this.userId,
+      url: merca.response.sandbox_init_point,
+      status: 'alive'
+      });
     
-     Orders.insert({
-        userId: this.userId,
-        url: merca.response.init_point,
-        items: cart.items,
-        status: 'alive'
-        });
-    },
+  },
 
-  /*
-    {
-      "items": [
-        {
-          "currency_id": "ARS",
-          "quantity": 2,
-          "title": 'item 1',
-          "unit_price": 32, 
-        },
-        {
-          "currency_id": "ARS",
-          "quantity": 1,
-          "title": 'item 2',
-          "unit_price": 15, 
-        }
-      ]
-    };*/
-
-  getPreference(){
-   var refe = MercadoPago.getPreference('#2076438190');
-   console.log(refe);
-
+  removeCart(cartId){
+    Carts.remove(cartId);
   }
-
 
 });

@@ -19,7 +19,6 @@ ProductsList = React.createClass({
 		let cartContent = this.data.userCart[0].items,
 				orderData = cartContent.map(function(a) {return a.url;});
 		Meteor.call('createOrder',cartContent);
-		//console.log(cartContent);
 	},
 
 	getProduct(){
@@ -28,13 +27,20 @@ ProductsList = React.createClass({
     });
 	},
 
+	openModal(){
+		let url = this.data.userOrders.map(function(a) {return a.url;}),
+				cartId = this.data.userCart._id;
+		window.open(url, 'newwindow', 'width=767, height=390'); return false;
+		Meteor.call('removeCart',cartId);
+	},
+
 	payOrder(){
 		let orderLenght = this.data.userOrders.length,
-				url = this.data.userOrders.map(function(a) {return a.url;});
+				url = this.data.userOrders.map(function(a) {return a.url;});		
 		
 		if(orderLenght>0){
 			return (
-				<a href={url} className="ui animated button" tabIndex="0">
+				<a href={url} target="_blank" className="ui animated button" tabIndex="0" onClick={this.openModal}>
 				  <div className="visible content">Pagar</div>
 				  <div className="hidden content">
 				    <i className="right arrow icon"></i>
