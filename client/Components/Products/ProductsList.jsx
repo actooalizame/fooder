@@ -1,9 +1,7 @@
 ProductsList = React.createClass({
 	mixins: [ReactMeteorData],
 
-	getMeteorData(){
-		Meteor.subscribe('allProducts');
-		
+	getMeteorData(){		
 
 		return {
 			products: Products.find({}).fetch(),

@@ -1,15 +1,11 @@
-
-
 Cart = React.createClass({
 	mixins: [ReactMeteorData],
 
 	getMeteorData(){
-		Meteor.subscribe('userCart');
-		Meteor.subscribe('userOrders');
 
 		return {
 			userCart: Carts.find({}).fetch(),
-			userOrders: Orders.find({status:'alive'}).fetch(),
+			userOrders: Orders.find({status:'pendiente'}).fetch(),
 			
 		}
 	},
@@ -36,34 +32,13 @@ Cart = React.createClass({
 
 	createOrder(){
 		let cartContent = this.data.userCart[0].items,
-				orderData = cartContent.map(function(a) {return a.url;});
-		Meteor.call('createOrder',cartContent);
-	},
-
-	payOrder(){
-		let orderLenght = Orders.find({status:'alive'}).count(),
-				url = this.data.userOrders.map(function(a) {return a.url;});		
-		
-		if(orderLenght>0){
-			return (
-				<a href={url} target="_blank" className="ui animated button" tabIndex="0" onClick={this.openModal}>
-				  <div className="visible content">Pagar</div>
-				  <div className="hidden content">
-				    <i className="right arrow icon"></i>
-				  </div>
-				</a>
-				)
-		} else if (orderLenght==0) {
-			return <span></span>
-		}
-	},
-
-	openModal(){
-		let url = this.data.userOrders.map(function(a) {return a.url;}),
+				orderData = cartContent.map(function(a) {return a.url;}),
 				cartId = this.data.userCart[0]._id;
+		Meteor.call('createOrder',cartContent);
 		Meteor.call('removeCart',cartId);
-		window.open(url, 'newwindow', 'width=767, height=390'); return false;
 	},
+
+	
 
 	clearCart(){
 		let cartId = this.data.userCart[0]._id;
@@ -92,10 +67,10 @@ Cart = React.createClass({
 						  <button className="ui button" onClick={this.clearCart}>Vaciar Carrito</button>
 						</div>
 						
-						{this.payOrder()}
+						
 					</div>
 				:
-					<h3>Tu carrito de compras esta vacio</h3>
+					<h5>Tu carrito de compras esta vacio</h5>
 				}
 				
 			</div>

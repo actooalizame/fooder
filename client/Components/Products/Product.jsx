@@ -1,5 +1,3 @@
-
-
 Product = React.createClass({
 
 	addProduct(){

@@ -68,9 +68,10 @@ Meteor.methods({
     Orders.insert({
       userId: this.userId,
       url: merca.response.sandbox_init_point,
-      status: 'alive',
+      status: 'pendiente',
       items: cartContent,
-      cartTotal: cartTotal
+      cartTotal: cartTotal,
+      createdAt: new Date()
       });
     
   },
