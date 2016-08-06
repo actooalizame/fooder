@@ -41,7 +41,7 @@ Cart = React.createClass({
 	},
 
 	payOrder(){
-		let orderLenght = this.data.userOrders.length,
+		let orderLenght = Orders.find({status:'alive'}).count(),
 				url = this.data.userOrders.map(function(a) {return a.url;});		
 		
 		if(orderLenght>0){

@@ -3,10 +3,10 @@ FrontPage = React.createClass({
 		return(
 			<div className="ui internally celled stackable grid container">
 			 
-		    <div className="twelve wide column">
+		    <div className="sixteen wide mobile ten wide tablet twelve wide computer column">
 		    	<ProductsList />
 		    </div>
-		    <div className="four wide column">
+		    <div className="sixteen wide mobile six wide tablet four wide computer column">
 		    	<Cart />
 		    </div>
 		    

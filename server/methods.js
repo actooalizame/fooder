@@ -60,12 +60,17 @@ Meteor.methods({
         }
       ]
     }
-
+    
     var merca = MercadoPago.createPreference(cart);
+    console.log(merca);
+    let mapped = cartContent.map(function(a) {return a.unit_price;}),
+        cartTotal = eval(mapped.join('+'));
     Orders.insert({
       userId: this.userId,
       url: merca.response.sandbox_init_point,
-      status: 'alive'
+      status: 'alive',
+      items: cartContent,
+      cartTotal: cartTotal
       });
     
   },
