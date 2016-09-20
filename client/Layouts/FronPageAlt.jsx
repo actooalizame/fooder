@@ -20,16 +20,16 @@ FrontPageAlt = React.createClass({
 				
 			
 			  <div className="ui wide right sidebar inverted vertical menu">
-			    <a className="item">
+			    <div className="item">
 			      <Cart />
-			    </a>
+			    </div>
 			    
 			  </div>
 
 			  <div className="ui wide left sidebar inverted vertical menu">
-			    <a className="item">
+			    <div className="item">
 			      <Order />
-			    </a>
+			    </div>
 			    
 			  </div>
 			  <div className="pusher">

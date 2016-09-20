@@ -9,7 +9,7 @@ ProductModal = React.createClass({
         </div>
         <div className="image content">
           <div className="ui medium image">
-            <img src="/images/avatar/large/chris.jpg" />
+            <ProductSlider slideId={this.props.product._id}/>
           </div>
           <div className="description">
             <div className="ui header">{this.props.product.name}</div>
