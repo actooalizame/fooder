@@ -40,7 +40,6 @@ Product = React.createClass({
 		let modalId = '.ui.modal#'+this.props.product._id;
 		jQuery(modalId)
 	  .modal('show');
-	  console.log(modalId);
 	},
 
 	render(){

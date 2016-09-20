@@ -21,7 +21,16 @@ Order = React.createClass({
 	render(){
 		return(
 			<div>
-				{this.getOrders()}
+				{this.data.userOrders.length > 0 ?
+					<div>
+						{this.getOrders()}
+					</div>
+					
+				:
+				<h3>Aun no realizaste ningun pedido</h3>
+
+				}
+				
 				
 				
 			</div>

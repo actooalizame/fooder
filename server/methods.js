@@ -74,7 +74,7 @@ Meteor.methods({
         cartTotal = eval(mapped.join('+'));
     Orders.insert({
       userId: this.userId,
-      url: merca.response.sandbox_init_point,
+      url: merca.response.init_point,
       status: 'pendiente',
       items: cartContent,
       cartTotal: cartTotal,

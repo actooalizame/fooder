@@ -59,7 +59,7 @@ Cart = React.createClass({
 				
 				{this.data.userCart.length > 0 ?
 					<div className="cartus">
-						<p>Tenes <strong>{this.data.userCart[0].items.length}</strong> {this.pluralizeString()} en tu carrito</p>
+						<h3>Tenes <strong>{this.data.userCart[0].items.length}</strong> {this.pluralizeString()} en tu carrito</h3>
 						{this.getItems()}
 						<hr/>
 						<h3>Total: ${this.getTotal()}</h3>
@@ -72,7 +72,7 @@ Cart = React.createClass({
 						
 					</div>
 				:
-					<h5>Tu carrito de compras esta vacio</h5>
+					<h3>Tu carrito de compras esta vacio</h3>
 				}
 				
 			</div>
