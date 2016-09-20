@@ -11,8 +11,9 @@ Meteor.methods({
         "id": productData.id,
         "title": productData.title,
         "unit_price": productData.unit_price,
+        "description": productData.description,
         "quantity": 1,
-        "currency_id": "ARS"
+        "currency_id": "CLP"
         }
       ]
     })
@@ -25,8 +26,9 @@ Meteor.methods({
           "id": productData.id,
           "title": productData.title,
           "unit_price": productData.unit_price,
+          "description": productData.description,
           "quantity": 1,
-          "currency_id": "ARS"
+          "currency_id": "CLP"
         }} 
       }
     );
@@ -44,6 +46,8 @@ Meteor.methods({
     let names = cartContent.map(function(a) {return a.title;});
         namesTotal = names.join(', ');
         //namesTotal = names.split('- ').join("\n")
+    let description = cartContent.map(function(a) {return a.description;});
+        descriptionTotal = description.join(', ');
     let quantity = cartContent.map(function(a) {return a.quantity;}),
         quantityTotal = eval(quantity.join('+'));
     
@@ -56,12 +60,15 @@ Meteor.methods({
           "currency_id": "ARS",
           "quantity": quantityTotal/quantityTotal,
           "title": namesTotal,
+          "description": descriptionTotal,
           "unit_price": priceTotal, 
         }
-      ]
+      ],
+      "back_urls": { success:'localhost:3000/success', pending:'localhost:3000/pending', failure:'localhost:3000/failure'}
     }
     
     var merca = MercadoPago.createPreference(cart);
+    //console.log(merca.response.items[0].description);
     console.log(merca);
     let mapped = cartContent.map(function(a) {return a.unit_price;}),
         cartTotal = eval(mapped.join('+'));

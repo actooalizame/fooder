@@ -36,6 +36,7 @@ Cart = React.createClass({
 				cartId = this.data.userCart[0]._id;
 		Meteor.call('createOrder',cartContent);
 		Meteor.call('removeCart',cartId);
+		jQuery('.ui.right.sidebar').sidebar('hide');
 	},
 
 	
@@ -43,6 +44,7 @@ Cart = React.createClass({
 	clearCart(){
 		let cartId = this.data.userCart[0]._id;
 		Meteor.call('removeCart',cartId);
+		jQuery('.ui.right.sidebar').sidebar('hide');
 	},
 
 	pluralizeString(){
@@ -56,8 +58,8 @@ Cart = React.createClass({
 			<div>
 				
 				{this.data.userCart.length > 0 ?
-					<div>
-						<p>Tienes <strong>{this.data.userCart[0].items.length}</strong> {this.pluralizeString()} en tu carrito</p>
+					<div className="cartus">
+						<p>Tenes <strong>{this.data.userCart[0].items.length}</strong> {this.pluralizeString()} en tu carrito</p>
 						{this.getItems()}
 						<hr/>
 						<h3>Total: ${this.getTotal()}</h3>

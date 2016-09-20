@@ -2,7 +2,7 @@ OrderList = React.createClass({
 
 	formatDate(){
 		let raw = this.props.order.createdAt;
-		return moment(raw).format('DD/MM/YY - h:mm a');
+		return moment(raw).format('DD/MM/YY - h:mm:ss a');
 	},
 
 	getItems(){

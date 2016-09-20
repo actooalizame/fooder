@@ -7,5 +7,5 @@ Meteor.publish('userCart', function(){
 });
 
 Meteor.publish('userOrders', function(){
-  return Orders.find({userId:this.userId}, {'limit':3});
+  return Orders.find({userId:this.userId},{sort:{createdAt:-1},limit:3});
 });

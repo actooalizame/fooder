@@ -6,20 +6,20 @@ import { mount } from 'react-mounter'
 FlowRouter.route('/', {
 	name: 'home',
 	action(){
-		mount(MainLayout, {content: <FrontPage  />});
+		mount(MainLayout, {content: <FrontPageAlt  />});
 	}
 });
 
 FlowRouter.route('/success', {
-	name: 'home',
+	name: 'success',
 	action(){
-		mount(FrontLayout, {content: <PayDone  />});
+		mount(MainLayout, {content: <PayDone  />});
 	}
 });
 
 FlowRouter.route('/failure', {
-	name: 'home',
+	name: 'failure',
 	action(){
-		mount(FrontLayout, {content: <PayFail  />});
+		mount(MainLayout, {content: <PayFail  />});
 	}
 });

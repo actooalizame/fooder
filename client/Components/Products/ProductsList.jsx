@@ -17,15 +17,21 @@ ProductsList = React.createClass({
     });
 	},
 
-	
+	displayModal(){
+		return this.data.products.map((product) =>{
+      return <ProductModal key={product._id} product={product}  />
+    });
+	},
 
 
 
 	render(){
 		return(
-			<div>
-				{this.getProduct()}
-
+			<div className="ui stackable four column grid container">
+				<div className="row">
+					{this.getProduct()}
+				</div>
+				{this.displayModal()}
 			</div>
 			
 			)
